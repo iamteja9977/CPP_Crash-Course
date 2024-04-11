@@ -1,0 +1,218 @@
+Day 3:
+======
+	Different types of members of a class.
+		Data Members:
+		-------------
+			Class Member:
+				One copy per class ---> using static keyword.
+
+				Object/Instance/Variable Member:
+					"Each object has its own copy"
+						normal data members without any keyword
+						const data members using const keyword
+						mutable data members using mutable keyword
+				
+				Let me give you an example:
+				Example: class Employee
+
+class Array{
+	int arr[SIZE];
+	const int size;
+public:
+	Array(int = 0);
+	Array(int sz, int first);
+
+	void fillArray(int first);
+	void printArray();
+};
+
+After this:
+-----------
+
+	const member functions and const objects
+	mutable and static members
+	dynamic memory allocation in C++.
+
+	Introduction to Operator overloading 
+
+==========================================================
+
+Discussion on const keyword:
+---------------------------
+
+refer to file "employeeThree.cpp"
+
+Using const keyword with objects:
+--------------------------------
+
+const objects will only allow constant functions to be called.
+also constant objects will not allow class variables to be modified.
+Only when you use mutable with a class variable, 
+then const objects will allow modification of that variable
+	
+Using static keywords:
+---------------------
+
+static members belong to the class instead of the object.
+
+static members of a class are referred to class members.
+One copy per class.
+static member functions can access only static data members of the class.
+static member functions cannot access instance members.
+
+
+Syntax for static function:
+	static returnType funName(arguments){
+	}
+
+
+Dyanamic memory allocation in C++ :
+------------------------------------
+
+	Heap based objects/variables allocated dynamically.
+	
+
+	C style:
+	--------
+		In C we used stdlib.h which has functions like malloc, calloc, realloc and free functions
+		for allocating memory dynamically.
+
+	C++ style:
+	==========
+		Remember (always) all valid C code is a C++ code! 
+		In addition to the above mentioned functions, 
+		C++ provides operators new and delete for dynamic memory allocation.
+
+		For storing individual elements (on data only):
+
+		
+		C Style:
+
+			int *iPtr = malloc(sizeof(int));	// allocate bytes in the memory.
+			*iPtr = 10;
+			
+			free(iPtr);	// for deleting or removing from the memory.
+
+		C++ Style:
+			int *iPtr = new int(10);
+
+		==============================================================
+		For collections of elements:
+		
+		C Style:
+			int size = 100;
+			int *iPtr = malloc(sizeof(int) * size);
+			or 
+			int *iPtr = calloc(sizeof(int), size);
+		
+		C++ Style:
+			int size = 100;
+			int *iPtr = new int[size];
+			delete[] iPtr;
+
+
+		Task: Create a class with dynamically allocated class variable
+			(Use constructors and destructors to allocate and deallocate such class variables).
+		Solution: see "arrayUsingDynamic.cpp"
+
+		class Array{
+			int *arr;	// a pointer variable
+			const int size;
+		public:
+			Array(int = 0);
+			Array(int sz, int first);
+
+			void fillArray(int first);
+			void printArray();
+		};
+
+================================================================
+
+Important notes on memory allocation and deallocation:
+------------------------------------------------------
+
+Two memory related problems are :-
+
+1. Memory leaks
+2. Dangling pointers
+
+==================================================================
+
+1. Memory Leaks:
+----------------
+
+After allocating memory,
+if you do not use delete, that part of memory will not be freed.
+
+In programs which run indefinitely 
+(a program using infinite loop or programs in mobile devices)
+This will become a big problem as it creates memory leaks.
+
+The memory leak lasts until the system is reset (aka system is rebooted). 
+For example: if the elevator's power were turned off or in a power outage, the program would stop running. 
+When power was turned on again, the program would restart and all the memory would be available again, 
+but the slow process of memory leak would restart together with the program, 
+eventually prejudicing the correct running of the system. 
+
+use tools like valgrind to find out memory leaks 
+use command to find out where memory was not deallocated and leaks are happening:
+$valgrind ./a.out --memory-check
+
+For more info on memory leaks, see this informative wikipedia article:
+https://en.wikipedia.org/wiki/Memory_leak
+
+===================================================================
+
+2. Dangling pointers: 
+----------------------
+
+Pointers pointing to an object which was already deleted.
+When you try to free that pointer, you get a segfault.
+
+see for more info: "danglingptr.cpp"
+
+Note: please note that double deletion does not work on OpenSUSE systems,
+but it somehow works on windows. 
+
+Try it with some other programs to demonstrate dangling pointers.
+
+===================================================================
+
+How memory allocation works in C/C++:
+
+when you create a object with new keyword.
+Object pointer is stored in stack and actual object is stored in heap.
+
+====================================================================
+
+For any class in C++,
+	
+	your compiler provides necessary syntax support for 
+		1. default object creation (Default constructor is used)
+			Array obj;
+		2. Support copy sematics (Copy constructor is used)
+			Array objB = objA;
+		3. Supports copy assignment (Assignment operator overload)
+			objB = objA;
+		4. Support basic destructors (Destructor)
+			
+
+		These above functionalities are provided for every class created in C++.
+		Your C++ compiler generates constructors and destructors IF NECESSARY 
+		(to see when this case happens see: "constructorOne.cpp" and "constructorTwo.cpp")
+
+		In one file we are using array of chars and in other we are using C++ string object.
+		if you use "nm ./a.out" after compiling either of these files.
+		you will see some extra 4 functions which are default constructors and destructors
+		for your class and also for string class which are generated by compiler for
+		file where string is used as a class member.
+
+
+For tommorow, do some reading on this topic:
+
+Deep copy and shallow copy...
+=============================
+
+We will have discussion tomorrow.		
+
+
