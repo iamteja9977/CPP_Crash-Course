@@ -1,0 +1,99 @@
+day2:
+==================================================
+
+note: 
+return type is not part of function signature in C++.
+	for eg: constructors don't even have return type.
+
+Therefore, function overloading does not consist of changing return types.
+
+==================================================
+
+Using classes with basic data structures:
+
+
+1. Using arrays
+	class Array{
+		int arr[SIZE];
+		int size;
+	public:
+		void initializeArr();
+		void fillArray(int first);
+		void printArray();
+	};
+
+2. Using Linked List
+	struct Node{
+		int data;
+		Node *next;
+	};
+
+	class LinkedList{
+		Node* first;
+	public:
+		void initialize();
+		void addAtBeg();
+		void addAtEnd();
+		void addAtPos(int);
+		void disp();
+	};
+
+========================================================
+
+There are special functions that can be used for initialization and de-initialization called as constructors and destructors.
+
+Constructors:
+-------------
+	Constructors are special functions which are automatically called when an object/variable/instance of a class is created.
+	These constructors can take arguments, because it takes arguments the signature of these functions can vary. 
+	(That means these functions can be overloaded).
+
+Destructors:
+------------
+	Destructor is a special function which gets called when the scope of the variable/instance is gone.	
+	Destructor does not take any arguments, so it cannot be overloaded in a class.
+	
+What is special about constructors:
+===================================
+	There are 3 points that makes constructors special
+		1. Same name as class name.
+		2. It does not have any return value (not even void).
+		3. They are automatically called.
+		
+	Destructor:
+	-----------
+		1. name starts with ~ClassName
+		2. no return types.
+		3. automatically called.
+	
+===================================================================
+
+Notes on Data Members:
+
+const	=> cannot be modified
+static	=> one copy per class
+mutable	=> which can be modified
+
+
+===================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
