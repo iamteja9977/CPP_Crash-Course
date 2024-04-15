@@ -1,0 +1,241 @@
+Exception Safety classes/objects...
+User defined exceptions
+	heirarchy of user defined exception classes
+
+======================================================
+
+Modern C++ => C++11 onwards.
+
+======================================================
+
+creating pointer classes with wrapper classes:
+
+see:
+	exceptionSafetyOne.cpp
+	exceptionSafetyTwo.cpp
+	exceptionSafetyThree.cpp
+	exceptionSafetyTwoSol.cpp
+	exceptionSafetyPtr.cpp
+
+Notice that in any of these programs we are not solving problem 
+of dangling pointers, we are just handling allocation and deallocation
+to avoid memory leaks.
+
+these wrapper classes can be used to create:
+	1.) shared_ptr<>()
+		maintains a reference count to an object in heap
+		when reference count becomes zero
+		that memory gets deallocated.
+	2.) unique_ptr<>()
+	3.) weak_ptr<>()
+
+
+Solutions to dangling pointer:
+	1.) deep copy
+		Implemented in C++ using copy constructors and 
+		overloaded "=" operator which does deep copy.
+	2.) shared ownership 
+		Implemented in C++ using 
+		shared_ptr<>() which uses reference count
+	3.) single ownership / transfering the ownership. 
+		Implemented in C++ using 
+		unique_ptr<>() which maintains single/unique ownership.
+
+===============================================
+
+How to create r-value references?
+
+In modern C++, r-value references are also possible.
+
+example:
+
+l-value reference:
+int& ref = x;
+
+r-value reference:
+
+int&& ref = 10;
+
+int&& ref = fun();
+
+for more info: 
+https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n2027.html
+
+=====================================================
+
+Exception Safety classes/object...
+Built-in exception classes
+	There are two main categories of exception classes
+	in C++:
+
+	Logic errors:
+		are errors that can be detected by reading the code.
+		For eg: trying to divide by zero is a logic error.
+	Runtime errors:
+		are errors that cannot be detected by reading the code.
+		For eg: trying to open a file that does not exist is a runtime error.
+
+The following table shows some of the most common exception classes in C++:
+
+Class				Description
+===========================================================================
+std::logic_error		Base class for all logic errors.
+std::domain_error		Thrown when an invalid argument is passed to a function.
+std::invalid_argument		Thrown when an invalid argument is passed to a function.
+std::length_error		Thrown when an attempt is made to access 
+				an element of an array that is out of bounds.
+std::out_of_range		Thrown when an attempt is made to acces
+				an element of an array that is out of bounds.
+std::runtime_error		Base class for all runtime errors.
+std::range_error		Thrown when an attempt is made to access an element
+				of an array that is out of bounds.
+std::overflow_error		Thrown when an attempt is made to perform an arithmetic operation
+				that results in an overflow.
+std::underflow_error		Thrown when an attempt is made to perform an arithmetic operation
+				that results in an underflow.
+
+=====================================================
+
+User defined Exception classes in C++:
+	hierarchy of user defined exception classes.
+
+
+see:
+	UDExceptionOne.cpp
+	UDExceptionTwo.cpp
+	UDExceptionTwoRef.cpp
+	UDExceptionThree.cpp
+
+=====================================================
+
+IO Streams:
+
+There are close to 22 classes based on I/O stream.
+But instructor will discuss 8 main classes.
+
+				IOS_base
+					|
+					IOS 
+				/		\
+			istream		ostream
+				\		/
+					iostream
+
+cin is an object of istream class.
+This also handles operator overloading of ">>".
+It also has get functions like:
+get(), getline(), etc there are plenty of get function likethese.
+
+cout is an object of ostream class.
+This also handles operator overloading of "<<".
+It also has lot of put functions.
+
+From these three classes like: istream, iostream and ostream
+there are three file related classes that inherit them.
+istream		iostream	ostream
+	|			|			|
+ifstream	fstream		ofstream
+
+In this way there are 8 stream related classes.
+
+Here some examples on iostream:
+
+iosOne.cpp
+iosTwo.cpp
+iosThree.cpp
+
+=====================================================
+
+Generic Programming using Templates in C++:
+-------------------------------------------
+
+Generic programming is writing code irrespective of which datatype
+we are dealing with.
+Usually we do this when algorithms is same but datatypes can be different.
+We can apply generic programming to functions as well as classes.
+for eg:
+fun(int)
+fun(float)
+fun(double)
+fun(string)
+and so on...
+
+Class which uses generic programming is called generic class.
+
+In addition to object oriented programming and functional programming,
+C++ also supports generic programming.
+
+Generic programming is implemented in
+C++ using Templates and in Java using generics.
+templates in C++ have their datatype in arguments inside <>
+for eg:
+
+template<datatype>
+void fun(datatype va){
+	// insert code here.
+}
+
+Instructor says that once you get enough experience in a company.
+You will not be coding in software, you will be managing
+other junior software engineers. 
+
+================================================================
+
+Using Templates in Class:
+
+Template classes in C++ are also called generic class.
+
+syntax:
+template<datatype T>
+class ClassName{
+	T dataIdentifier;
+public:
+	T fun(T a){
+		// insert code here
+		return a;
+	}
+}
+
+Test<int> obj(10);
+Test<double> dobj(10.123);
+
+see:
+	templateClassOne.cpp	
+	templateClassTwo.cpp
+
+===================================================================
+
+Standard Template Library (STL):
+
+Some guy from HP created a template library.
+Then Microsoft adopted it.
+
+							STL
+							|
+		-----------------------------------------------------------------
+		|											|					|
+	containers									iterators			Algorithms
+		|											|					|
+		|----> Sequence					Random access iterator []		|-sort
+		|			|----> vector		Sequential iterator ++, --		|-find
+		|			|----> list			input_iterator					|-search
+		|			|----> dequeue		output_itertor				
+		|			
+		|----> Associative
+					|
+					|----> set	---|
+					|----> map	---|- ordered collection
+					|
+					|---->unordered_set	---|
+					|---->unordered_map ---|-unordered collection
+					
+
+
+
+
+
+
+
+
+
+
