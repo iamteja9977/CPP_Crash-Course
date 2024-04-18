@@ -49,14 +49,14 @@ Array::~Array()
 
 void Array::fillArray(int first)
 {
-    for (int cnt = 0; cnt < size; ++cnt)
-        arr[cnt] = first + cnt;
+    for (int i = 0; i < size; ++i)
+        arr[i] = first + i;
 }
 
 void Array::printArray()
 {
     cout << "Array: ";
-    for (int cnt = 0; cnt < size; ++cnt)
-        cout << arr[cnt] << " ";
+    for (int i = 0; i < size; ++i)
+        cout << arr[i] << " ";
     cout << endl;
 }
