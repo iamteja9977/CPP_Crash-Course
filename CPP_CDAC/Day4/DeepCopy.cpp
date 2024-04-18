@@ -41,8 +41,8 @@ Array::Array(const Array &rhsObj) : size(rhsObj.size)
     if (size > 0)
     {
         a = new int[size];
-        for (int cnt = 0; cnt < size; ++cnt)
-            a[cnt] = rhsObj.a[cnt];
+        for (int i = 0; i < size; ++i)
+            a[i] = rhsObj.a[i];
     }
     else
     {
